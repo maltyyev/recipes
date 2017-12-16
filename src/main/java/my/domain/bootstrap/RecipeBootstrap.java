@@ -91,22 +91,21 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         Notes guacamoleNotes = new Notes();
         guacamoleNotes.setRecipeNotes("SHUT DA FUCK UP!!!");
-        guacamoleNotes.setRecipe(guacamoleRecipe);
 
         guacamoleRecipe.setNotes(guacamoleNotes);
 
         Ingredient[] ingredients = {
-                new Ingredient("ripe avocados", new BigDecimal(2), eachUOM, guacamoleRecipe),
-                new Ingredient("Kosher salt", new BigDecimal(".5"), teaspoonUOM, guacamoleRecipe),
-                new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2), tablespoonUOM, guacamoleRecipe),
-                new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2), tablespoonUOM, guacamoleRecipe),
-                new Ingredient("serrano chiles, stems and seeds removed, minced", new BigDecimal(2), eachUOM, guacamoleRecipe),
-                new Ingredient("Cilantro", new BigDecimal(2), tablespoonUOM, guacamoleRecipe),
-                new Ingredient("freshly grated black pepper", new BigDecimal(2), dashUOM, guacamoleRecipe),
-                new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), eachUOM, guacamoleRecipe)
+                new Ingredient("ripe avocados", new BigDecimal(2), eachUOM),
+                new Ingredient("Kosher salt", new BigDecimal(".5"), teaspoonUOM),
+                new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2), tablespoonUOM),
+                new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2), tablespoonUOM),
+                new Ingredient("serrano chiles, stems and seeds removed, minced", new BigDecimal(2), eachUOM),
+                new Ingredient("Cilantro", new BigDecimal(2), tablespoonUOM),
+                new Ingredient("freshly grated black pepper", new BigDecimal(2), dashUOM),
+                new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), eachUOM)
         };
 
-        guacamoleRecipe.getIngredients().addAll(Arrays.asList(ingredients));
+        guacamoleRecipe.addIngredients(Arrays.asList(ingredients));
 
         guacamoleRecipe.getCategories().add(americanCategory);
         guacamoleRecipe.getCategories().add(mexicanCategory);

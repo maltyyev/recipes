@@ -1,6 +1,7 @@
 package my.domain.models;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -119,7 +120,20 @@ public class Recipe {
     }
 
     public void setNotes(Notes notes) {
+        notes.setRecipe(this);
         this.notes = notes;
+    }
+
+    public Recipe addIngredient(Ingredient ingredient) {
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
+    }
+
+    public Recipe addIngredients(Collection<Ingredient> ingredients) {
+        ingredients.forEach(ingredient -> ingredient.setRecipe(this));
+        this.ingredients.addAll(ingredients);
+        return this;
     }
 
     public Set<Ingredient> getIngredients() {
