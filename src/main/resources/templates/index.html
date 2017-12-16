@@ -7,5 +7,11 @@
 </head>
 <body>
     <h1>My Recipes!</h1>
+    <div class="recipe" th:each="recipe : ${recipes}">
+        <h2 th:text="${recipe.description}"></h2>
+        <ul>
+            <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.amount} + ' ' + ${ingredient.uom.description} + ' ' + ${ingredient.description}"></li>
+        </ul>
+    </div>
 </body>
 </html>
