@@ -1,5 +1,6 @@
 package my.domain.bootstrap;
 
+import lombok.extern.slf4j.Slf4j;
 import my.domain.models.*;
 import my.domain.repositories.CategoryRepository;
 import my.domain.repositories.RecipeRepository;
@@ -7,6 +8,7 @@ import my.domain.repositories.UnitOfMeasureRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.Optional;
 /**
  * Created by maltyyev on 17.12.17.
  */
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -31,11 +34,14 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Loading Bootstrap Data");
     }
 
     private List<Recipe> getRecipes() {
+        log.debug("Getting some recipes");
         List<Recipe> recipes = new ArrayList<>(2);
 
         Optional<UnitOfMeasure> eachUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Each");
