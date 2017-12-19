@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Recipes</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+    <script src="webjars/jquery/3.2.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <div class="container-fluid" style="margin-top: 20px;">
@@ -16,10 +21,13 @@
                 </div>
                 <div class="panel-body">
                     <div th:each="recipe : ${recipes}">
-                        <h2 th:text="${recipe.description}"></h2>
+                        <a href="#" th:href="@{'/recipes/show/' + ${recipe.id}}">
+                            <h2 th:text="${recipe.description}"></h2>
+                        </a>
                         <ul>
                             <li th:each="ingredient : ${recipe.ingredients}"
-                                th:text="${ingredient.amount} + ' ' + ${ingredient.uom.description} + ' ' + ${ingredient.description}">
+                                th:text="${ingredient.amount} + ' ' + ${ingredient.uom.description} + ' '
+                                        + ${ingredient.description}">
                             </li>
                         </ul>
                     </div>
