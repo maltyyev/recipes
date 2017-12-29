@@ -3,100 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Show</title>
-    <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../../static/vendors/css/grid.css" th:href="@{../../vendors/css/grid.css}">
+    <link rel="stylesheet" href="../../static/vendors/css/ionicons.min.css" th:href="@{../../vendors/css/ionicons.min.css}">
+    <link rel="stylesheet" href="../../static/resources/css/style.css" th:href="@{../../resources/css/style.css}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
     <script src="webjars/jquery/3.2.1/jquery.min.js"
             th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
-    <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"
-            th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-    <div class="container-fluid">
+    <header>
+        <div class="recipe-title row">
+            <h1 th:text="${recipe.description}">Lorem</h1>
+        </div>
+        <div class="recipe-description row">
+            <h2 th:text="'~' + ${recipe.cookTime + recipe.prepTime} + ' minutes'">
+                ~40 minutes
+            </h2>
+            <p th:text="${recipe.notes.recipeNotes}">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur atque dolorem dolores eligendi enim hic iste magnam minus mollitia nemo nostrum officia qui repellendus repudiandae rerum temporibus vitae. At?
+            </p>
+        </div>
+    </header>
+    <section class="recipe-description-full">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel-group">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h1 class="panel-title" th:text="${recipe.description}"></h1>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>Categories:</h5>
-                                </div>
-                                <div class="col-md-9">
-                                    <ul>
-                                        <li th:each="category : ${recipe.categories}"
-                                            th:text="${category.description}">
+            <h2>
+                Recipe
+            </h2>
+            <p th:text="${recipe.directions}" class="long-copy">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dolore dolorem doloremque, eum id inventore iste voluptates! Atque corporis dicta, hic modi rerum totam. Earum excepturi nostrum optio ratione sequi?
+            </p>
+        </div>
 
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5>Cook time:</h5>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p th:text="${recipe.cookTime}"></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5>Prep time:</h5>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p th:text="${recipe.prepTime}"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5>Difficulty:</h5>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p th:text="${recipe.difficulty}"></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h5>URL:</h5>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p th:text="${recipe.url}"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h1 class="panel-title">Directions</h1>
-                        </div>
-                        <div class="panel-body">
-                            <p th:text="${recipe.directions}"></p>
-                        </div>
-                    </div>
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h1 class="panel-title">Ingredients</h1>
-                        </div>
-                        <div class="panel-body">
-                            <ul>
-                                <li th:each="ingredient : ${recipe.ingredients}"
-                                    th:text="${ingredient.amount} + ' ' + ${ingredient.uom.description} + ' '
-                                        + ${ingredient.description}">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col span-1-of-3">
+                <i class="ion-ios-nutrition icon-big"></i>
+                <h3>Ingredients</h3>
+                <ul>
+                    <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.amount} + ' ' + ${ingredient.uom.description} + ' ' + ${ingredient.description}"></li>
+                </ul>
+            </div>
+            <div class="col span-1-of-3">
+                <i class="ion-ios-flask icon-big"></i>
+                <h3>How to cook</h3>
+                <p th:text="'Prepare for ' + ${recipe.prepTime} + ' minutes, cook for ' + ${recipe.cookTime} + 'minutes'">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci architecto at deleniti exercitationem harum illum impedit natus numquam obcaecati praesentium quaerat quo reiciendis rem rerum unde ut vel, veritatis, voluptatibus!
+                </p>
+            </div>
+            <div class="col span-1-of-3">
+                <i class="ion-earth icon-big"></i>
+                <h3>Original source</h3>
+                <p>
+                    <a th:href="${recipe.url}" th:text="${recipe.source}" href="http://www.google.com">Google</a>
+                </p>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 </html>

@@ -91,12 +91,12 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Recipe guacamoleRecipe = new Recipe();
         guacamoleRecipe.setDescription("Perfect Guacamole");
         guacamoleRecipe.setPrepTime(10);
-        guacamoleRecipe.setCookTime(0);
+        guacamoleRecipe.setCookTime(30);
         guacamoleRecipe.setDifficulty(Difficulty.EASY);
-        guacamoleRecipe.setDirections("SHUT DA FUCK UP!!!");
+        guacamoleRecipe.setDirections("Chop your husband's nuts and add them to your witch soup. But don't forget to shave them!");
 
         Notes guacamoleNotes = new Notes();
-        guacamoleNotes.setRecipeNotes("SHUT DA FUCK UP!!!");
+        guacamoleNotes.setRecipeNotes("This is a perfect guacamole for you and your fucking family of bitchy you, your cuckold white husband and 3 black kids.");
 
         guacamoleRecipe.setNotes(guacamoleNotes);
 
@@ -116,6 +116,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacamoleRecipe.getCategories().add(americanCategory);
         guacamoleRecipe.getCategories().add(mexicanCategory);
 
+        guacamoleRecipe.setSource("Your mom :)");
         guacamoleRecipe.setUrl("http://shut.da.fuck.up");
 
         recipes.add(guacamoleRecipe);
