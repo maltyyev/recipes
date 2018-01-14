@@ -1,40 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{../resources/css/style.css}">
+    <link rel="stylesheet" th:href="@{../vendors/css/ionicons.min.css}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     <title>Recipes</title>
-    <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
-    <script src="webjars/jquery/3.2.1/jquery.min.js"
-            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
-    <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"
-            th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<div class="container-fluid" style="margin-top: 20px;">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-primary">
+    <header class="index-header">
+        <nav>
+            <ul>
+                <li><a href="">Add new recipe</a></li>
+            </ul>
+        </nav>
+    </header>
 
-                <div class="panel-heading">
-                    <h1>My Recipes!</h1>
-                </div>
-                <div class="panel-body">
-                    <div th:each="recipe : ${recipes}">
-                        <a href="#" th:href="@{'/recipes/show/' + ${recipe.id}}">
-                            <h2 th:text="${recipe.description}"></h2>
-                        </a>
-                        <ul>
-                            <li th:each="ingredient : ${recipe.ingredients}"
-                                th:text="${ingredient.amount} + ' ' + ${ingredient.uom.description} + ' '
-                                        + ${ingredient.description}">
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div class="panel" th:each="recipe : ${recipes}">
+        <div class="panel-header">
+            <i class="ion-pizza"></i>
+            <h2 th:text="${recipe.title}"></h2>
+        </div>
+        <div class="panel-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem labore libero minus unde? Ducimus earum eius, esse hic illo impedit in, iste, iure laborum mollitia natus nihil repudiandae rerum sequi.
+            <a th:href="'/recipes/show/' + ${recipe.id}">Open</a>
         </div>
     </div>
-</div>
 </body>
 </html>

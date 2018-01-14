@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Show</title>
-    <link rel="stylesheet" href="../../static/vendors/css/grid.css" th:href="@{../../vendors/css/grid.css}">
-    <link rel="stylesheet" href="../../static/vendors/css/ionicons.min.css" th:href="@{../../vendors/css/ionicons.min.css}">
     <link rel="stylesheet" href="../../static/resources/css/style.css" th:href="@{../../resources/css/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
     <script src="webjars/jquery/3.2.1/jquery.min.js"
             th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
-    <header>
+    <header class="recipe-header">
         <div class="recipe-title row">
-            <h1 th:text="${recipe.description}">Lorem</h1>
+            <h1 th:text="${recipe.title}">Lorem</h1>
         </div>
         <div class="recipe-description row">
             <h2 th:text="'~' + ${recipe.cookTime + recipe.prepTime} + ' minutes'">
@@ -24,37 +22,57 @@
             </p>
         </div>
     </header>
-    <section class="recipe-description-full">
-        <div class="row">
-            <h2>
-                Recipe
-            </h2>
-            <p th:text="${recipe.directions}" class="long-copy">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dolore dolorem doloremque, eum id inventore iste voluptates! Atque corporis dicta, hic modi rerum totam. Earum excepturi nostrum optio ratione sequi?
-            </p>
-        </div>
 
+    <section>
         <div class="row">
-            <div class="col span-1-of-3">
-                <i class="ion-ios-nutrition icon-big"></i>
-                <h3>Ingredients</h3>
+            <h2 class="section-header">
+                Description
+            </h2>
+            <div class="long-copy">
+                <p th:text="${recipe.description}">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dolore dolorem doloremque, eum id inventore iste voluptates! Atque corporis dicta, hic modi rerum totam. Earum excepturi nostrum optio ratione sequi?
+                </p>
+                <p>Original source: <a target="_blank" href="#" th:href="${recipe.url}" th:text="${recipe.source}">own</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="row">
+            <h2 class="section-header">
+                General information
+            </h2>
+            <div class="long-copy">
+                <p th:text="'Difficulty: ' + ${recipe.difficulty}"></p>
+                <p>Categories:</p>
+                <ul>
+                    <li th:each="category : ${recipe.categories}" th:text="${category.description}"></li>
+                </ul>
+                <p th:text="${recipe.hint}"></p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="row">
+            <h2 class="section-header">
+                You will need
+            </h2>
+            <div class="long-copy">
                 <ul>
                     <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.amount} + ' ' + ${ingredient.uom.description} + ' ' + ${ingredient.description}"></li>
                 </ul>
             </div>
-            <div class="col span-1-of-3">
-                <i class="ion-ios-flask icon-big"></i>
-                <h3>How to cook</h3>
-                <p th:text="'Prepare for ' + ${recipe.prepTime} + ' minutes, cook for ' + ${recipe.cookTime} + 'minutes'">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci architecto at deleniti exercitationem harum illum impedit natus numquam obcaecati praesentium quaerat quo reiciendis rem rerum unde ut vel, veritatis, voluptatibus!
-                </p>
-            </div>
-            <div class="col span-1-of-3">
-                <i class="ion-earth icon-big"></i>
-                <h3>Original source</h3>
-                <p>
-                    <a th:href="${recipe.url}" th:text="${recipe.source}" href="http://www.google.com">Google</a>
-                </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="row">
+            <h2 class="section-header">
+                How to cook
+            </h2>
+            <div class="long-copy">
+                <p th:each="direction : ${recipe.directions.split('\n')}" th:text="${direction}"></p>
             </div>
         </div>
     </section>

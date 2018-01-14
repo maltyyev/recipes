@@ -18,12 +18,18 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String description;
+    private String title;
     private Integer prepTime;
     private Integer cookTime;
     private Integer servings;
     private String source;
     private String url;
+
+    @Lob
+    private String hint;
+
+    @Lob
+    private String description;
 
     @Lob
     private String directions;

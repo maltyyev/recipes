@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{../resources/css/style.css}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <title>Add new recipe</title>
+</head>
+<body>
+    <form th:object="${recipe}" th:action="@{/recipe/}">
+        <input type="hidden" th:field="*{id}">
+        <div class="panel">
+            <div class="panel-header">
+                <i class="ion-information"></i>
+                <h2>Recipe info</h2>
+            </div>
+            <div class="panel-body">
+
+            </div>
+        </div>
+    </form>
+</body>
+</html>
