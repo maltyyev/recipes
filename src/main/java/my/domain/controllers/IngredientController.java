@@ -9,7 +9,10 @@ import my.domain.services.RecipeService;
 import my.domain.services.UomService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * Created by maltyyev on 15.01.18 23:12
@@ -43,15 +46,14 @@ public class IngredientController {
         return "recipe/ingredient/show";
     }
 
-    @PostMapping
-    @RequestMapping("/ingredient/")
+    @PostMapping("/ingredient/")
     public String saveOrUpdate(@ModelAttribute IngredientCommand command) {
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
 
         return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredients";
     }
 
-    @RequestMapping("/recipe/{recipeId}/ingredients/new")
+    @GetMapping("/recipe/{recipeId}/ingredients/new")
     public String newIngredient(@PathVariable String recipeId, Model model) {
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
 
@@ -63,7 +65,7 @@ public class IngredientController {
         return "recipe/ingredient/show";
     }
 
-    @RequestMapping("/ingredients/{ingredientId}/delete")
+    @GetMapping("/ingredients/{ingredientId}/delete")
     public String deleteIngredient(@PathVariable String ingredientId) {
         Ingredient deletedIngredient = ingredientService.deleteIngredientById(Long.valueOf(ingredientId));
         return "redirect:/recipe/" + deletedIngredient.getRecipe().getId() + "/ingredients";
