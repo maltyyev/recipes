@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+    <link rel="stylesheet" th:href="@{/vendors/css/ionicons.min.css}">
+    <link rel="stylesheet" th:href="@{/vendors/css/grid.css}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
+    <title th:text="${ingredient.description}">Ingredient</title>
+</head>
+<body>
+    <form th:method="post" th:object="${ingredient}" th:action="@{/ingredient/}" class="post-form">
+        <input type="hidden" th:field="*{recipeId}">
+        <input type="hidden" th:field="*{id}">
+        <div class="panel">
+            <div class="panel-header">
+                <i class="ion-ios-nutrition"></i>
+                <h2>Ingredient</h2>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="amount">Amount</label>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <label for="uom">Unit of measure</label>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <label for="description">Description</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <input type="text" id="amount" th:field="*{amount}">
+                    </div>
+                    <div class="col span-1-of-3">
+                        <select id="uom" th:field="*{uom.id}">
+                            <option th:each="uom : ${UOMs}"
+                                    th:value="${uom.id}"
+                                    th:selected="${uom.id.equals(ingredient.uom.id)}"
+                                    th:text="${uom.description}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <input type="text" id="description" th:field="*{description}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Double check your input. If you're ok with that just click the button below:</h3>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</body>
+</html>

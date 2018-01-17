@@ -8,6 +8,10 @@
     box-sizing: border-box;
 }
 
+*:focus {
+    outline: none;
+}
+
 html, body {
     font-family: 'Montserrat', 'Arial', sans-serif;
     font-size: 20px;
@@ -18,8 +22,18 @@ html, body {
 
 :root {
     --main-color: #2980b9;
-    --main-color-darker: #de7519;
+    --main-color-darker: #236d9d;
     --image-text-color: #ecf0f1;
+    --image-text-color-darker: #d8e1e3;
+}
+
+.clearfix { zoom: 1; }
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
 
 /*----------------------------------------*/
@@ -28,7 +42,7 @@ html, body {
 
 .row {
     max-width: 1140px;
-    margin: 0 auto 20px 0;
+    margin: 0 auto 20px auto;
 }
 
 section {
@@ -40,7 +54,8 @@ section {
 }
 
 a:link,
-a:visited {
+a:visited,
+input[type=submit] {
     text-decoration: none;
     color: var(--main-color);
     border-bottom: 1px solid var(--main-color);
@@ -49,6 +64,28 @@ a:visited {
     -ms-transition: border-bottom-color 0.2s, color 0.2s;
     -o-transition: border-bottom-color 0.2s, color 0.2s;
     transition: border-bottom-color 0.2s, color 0.2s;
+}
+
+input[type=submit] {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    background-color: var(--main-color);
+    color: var(--image-text-color);
+    border-radius: 300px;
+    font-size: 100%;
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    -ms-transition: background-color 0.2s;
+    -o-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    border-color: transparent;
+    cursor: pointer;
+}
+
+input[type=submit]:hover,
+input[type=submit]:active {
+    background-color: var(--main-color-darker);
 }
 
 a:hover,
@@ -115,7 +152,38 @@ nav ul li:before {
 }
 
 /*----------------------------------------*/
-/* RECIPE HEADER */
+/* NEW RECIPE PAGE */
+/*----------------------------------------*/
+
+input[type=text],
+input[type=email],
+select,
+textarea {
+    width: 100%;
+    padding: 7px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+select {
+    font-size: 100%;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input[type=checkbox] {
+    margin: 10px 5px 10px 0;
+}
+
+.post-form input[type=submit] {
+    margin-left: 45%;
+}
+
+/*----------------------------------------*/
+/* RECIPE DISPLAY PAGE */
 /*----------------------------------------*/
 
 header.recipe-header {
@@ -155,12 +223,48 @@ header h2 {
     text-align: center;
 }
 
+.home {
+    left: 0;
+    top: 0;
+    padding: 10px 0 0 10px;
+}
+
+.home ul li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.home ul li a:link,
+.home ul li a:visited {
+    font-size: 120%;
+    border: none;
+    color: var(--image-text-color);
+    text-transform: uppercase;
+    -webkit-transition: border-bottom 0.2s, color 0.2s;
+    -moz-transition: border-bottom 0.2s, color 0.2s;
+    -ms-transition: border-bottom 0.2s, color 0.2s;
+    -o-transition: border-bottom 0.2s, color 0.2s;
+    transition: border-bottom 0.2s, color 0.2s;
+    padding-bottom: 5px;
+}
+
+.home ul li a:hover,
+.home ul li a:active {
+    border-bottom: 2px solid var(--main-color);
+    color: var(--image-text-color-darker);
+}
+
+.home ul li:before {
+    display: none;
+}
+
 /*----------------------------------------*/
 /* PARAGRAPHS */
 /*----------------------------------------*/
 
 h1,
-h2 {
+h2,
+.panel-header label {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -223,11 +327,29 @@ p {
     border-top-right-radius: 2px;
 }
 
-.panel-header h2 {
+.panel-header h2,
+.panel-header label {
     font-size: 150%;
     margin: 0;
     display: inline-block;
     color: var(--image-text-color);
+}
+
+.panel-header a:link,
+.panel-header a:visited {
+    float: right;
+    display: inline-block;
+    margin-bottom: 0;
+    color: var(--image-text-color);
+    margin-right: 10px;
+    font-size: 120%;
+    font-weight: 400;
+    padding: 1%;
+}
+
+.panel-header a:hover,
+.panel-header a:active {
+    border-bottom: 2px solid var(--image-text-color-darker);
 }
 
 .panel-header i {
@@ -244,4 +366,12 @@ p {
 
 .panel-body {
     padding: 10px;
+}
+
+/*----------------------------------------*/
+/* INGREDIENTS LIST PAGE */
+/*----------------------------------------*/
+
+ul li a.delete {
+    float: right;
 }

@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Show</title>
-    <link rel="stylesheet" href="../../static/resources/css/style.css" th:href="@{../../resources/css/style.css}">
+    <link rel="stylesheet" href="../../static/resources/css/style.css" th:href="@{/resources/css/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
     <script src="webjars/jquery/3.2.1/jquery.min.js"
             th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
     <header class="recipe-header">
+        <div class="home">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a th:href="'/recipe/' + ${recipe.id} + '/update'">Edit</a></li>
+            </ul>
+        </div>
         <div class="recipe-title row">
             <h1 th:text="${recipe.title}">Lorem</h1>
         </div>
@@ -17,7 +23,7 @@
             <h2 th:text="'~' + ${recipe.cookTime + recipe.prepTime} + ' minutes'">
                 ~40 minutes
             </h2>
-            <p th:text="${recipe.notes.recipeNotes}">
+            <p th:text="${recipe.notes}">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, aspernatur atque dolorem dolores eligendi enim hic iste magnam minus mollitia nemo nostrum officia qui repellendus repudiandae rerum temporibus vitae. At?
             </p>
         </div>
@@ -60,7 +66,7 @@
             </h2>
             <div class="long-copy">
                 <ul>
-                    <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.amount} + ' ' + ${ingredient.uom.description} + ' ' + ${ingredient.description}"></li>
+                    <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient}"></li>
                 </ul>
             </div>
         </div>

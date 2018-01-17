@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/resources/css/style.css" th:href="@{/resources/css/style.css}">
+    <link rel="stylesheet" href="../../static/vendors/css/ionicons.min.css" th:href="@{/vendors/css/ionicons.min.css}">
+    <link rel="stylesheet" href="../../static/vendors/css/grid.css" th:href="@{/vendors/css/grid.css}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
+    <title>Add new recipe</title>
+</head>
+<body>
+    <form th:method="post" th:object="${recipe}" th:action="@{/recipe/}" class="post-form">
+        <input type="hidden" th:field="*{id}">
+        <div class="panel">
+            <div class="panel-header">
+                <i class="ion-information"></i>
+                <h2>Recipe info</h2>
+                <a th:href="'/'">Cancel</a>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input type="text" id="title" th:field="*{title}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label>Choose categories:</label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" value="">
+                            Cat 1
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" value="">
+                            Cat 2
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <div>
+                            <label for="prepTime">Prep time:</label>
+                        </div>
+                        <div>
+                            <input type="text" id="prepTime" th:field="*{prepTime}">
+                        </div>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <div>
+                            <label for="cookTime">Cook time:</label>
+                        </div>
+                        <div>
+                            <input type="text" id="cookTime" th:field="*{cookTime}">
+                        </div>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <div>
+                            <label for="difficulty">Difficulty:</label>
+                        </div>
+                        <div>
+                            <select name="difficulty" id="difficulty" th:field="*{difficulty}">
+                                <option value="EASY">EASY</option>
+                                <option value="MODERATE">MODERATE</option>
+                                <option value="KIND_OF_HARD">KIND_OF_HARD</option>
+                                <option value="HARD">HARD</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <div>
+                            <label for="servings">Servings:</label>
+                        </div>
+                        <div>
+                            <input type="text" id="servings" th:field="*{servings}">
+                        </div>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <div>
+                            <label for="source">Source:</label>
+                        </div>
+                        <div>
+                            <input type="text" id="source" th:field="*{source}">
+                        </div>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <div>
+                            <label for="url">URL:</label>
+                        </div>
+                        <div>
+                            <input type="text" id="url" th:field="*{url}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-header clearfix">
+                <i class="ion-ios-nutrition"></i>
+                <h2>Ingredients</h2>
+                <a th:href="'/recipe/' + ${recipe.id} + '/ingredients'">
+                    Edit
+                </a>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li th:each="ingredient : ${recipe.ingredients}"
+                        th:text="${ingredient}"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-header">
+                <label for="description">Description</label>
+            </div>
+            <div class="panel-body">
+                <textarea name="description" id="description" th:field="*{description}"></textarea>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-header">
+                <label for="hint">Hint</label>
+            </div>
+            <div class="panel-body">
+                <textarea name="hint" id="hint" th:field="*{hint}"></textarea>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-header">
+                <label for="directions">Directions</label>
+            </div>
+            <div class="panel-body">
+                <textarea name="directions" id="directions" th:field="*{directions}"></textarea>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-header">
+                <label for="notes">Notes</label>
+            </div>
+            <div class="panel-body">
+                <textarea name="notes" id="notes" th:field="*{notes}"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3>Double check your input. If you're ok with that just click the button below:</h3>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</body>
+</html>

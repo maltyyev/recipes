@@ -37,8 +37,8 @@ public class Recipe {
     @Lob
     private Byte[] image;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Notes notes;
+    @Lob
+    private String notes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
@@ -52,9 +52,16 @@ public class Recipe {
         inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
-    public void setNotes(Notes notes) {
+    private Boolean present;
+
+    /*public void setNotes(Notes notes) {
         notes.setRecipe(this);
         this.notes = notes;
+    }*/
+
+    @PrePersist
+    void prePersist() {
+        present = true;
     }
 
     public void addIngredient(Ingredient ingredient) {

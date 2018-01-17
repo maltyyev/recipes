@@ -37,13 +37,13 @@ public class RecipeServiceImpl implements RecipeService {
         log.debug("I'm in the service");
 
         Set<Recipe> recipeSet = new HashSet<>();
-        recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
+        recipeRepository.findAllByPresentIsTrue().iterator().forEachRemaining(recipeSet::add);
         return recipeSet;
     }
 
     @Override
     public Recipe findById(Long id) {
-        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+        Optional<Recipe> recipeOptional = recipeRepository.findByIdAndPresentIsTrue(id);
 
         if (!recipeOptional.isPresent())
             throw new RuntimeException("YOU'RE A LOSER");
@@ -53,10 +53,25 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     @Transactional
+    public RecipeCommand findCommandById(Long id) {
+        return recipe2RecipeCommand.convert(findById(id));
+    }
+
+    @Override
+    @Transactional
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
         Recipe detachedRecipe = recipeCommand2Recipe.convert(command);
+        detachedRecipe.setPresent(true);
 
         Recipe savedRecipe = recipeRepository.save(detachedRecipe);
         return recipe2RecipeCommand.convert(savedRecipe);
+    }
+
+    @Override
+    @Transactional
+    public Recipe deleteRecipeById(Long id) {
+        Recipe toDelete = findById(id);
+        toDelete.setPresent(false);
+        return recipeRepository.save(toDelete);
     }
 }

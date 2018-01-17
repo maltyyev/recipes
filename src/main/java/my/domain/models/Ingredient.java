@@ -27,11 +27,27 @@ public class Ingredient {
     @OneToOne
     private UnitOfMeasure uom;
 
+    private Boolean present;
+
+    @PrePersist
+    void prePersist() {
+        present = true;
+    }
+
     public Ingredient() {}
 
     public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {
         this.description = description;
         this.amount = amount;
         this.uom = uom;
+    }
+
+    @Override
+    public String toString() {
+        return (amount.doubleValue() == 0.5 ? "half" : amount.stripTrailingZeros().toString())
+                + " "
+                + (uom.getDescription().equals("Each") ? "" : uom.getDescription() + " of")
+                + " "
+                + description;
     }
 }

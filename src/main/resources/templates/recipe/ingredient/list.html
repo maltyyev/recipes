@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+    <link rel="stylesheet" th:href="@{/vendors/css/ionicons.min.css}">
+    <link rel="stylesheet" th:href="@{/vendors/css/grid.css}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
+    <title>Ingredients</title>
+</head>
+<body>
+    <div class="panel">
+        <div class="panel-header">
+            <i class="ion-ios-nutrition"></i>
+            <h2>Ingredients</h2>
+            <a th:href="'/recipe/' + ${recipe.id} + '/update'">Back</a>
+            <a th:href="'/recipe/' + ${recipe.id} + '/ingredients/new'">Add</a>
+        </div>
+        <div class="panel-body">
+            <ul>
+                <li th:each="ingredient : ${recipe.ingredients}" class="clearfix">
+                    <a th:href="'/recipe/' + ${recipe.id} + '/ingredients/' + ${ingredient.id} + '/show'"
+                       th:text="${ingredient}"></a>
+                    <a th:href="'/ingredients/' + ${ingredient.id} + '/delete'" class="delete">Delete</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
