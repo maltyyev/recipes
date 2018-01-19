@@ -16,6 +16,7 @@
                 <i class="ion-information"></i>
                 <h2>Recipe info</h2>
                 <a th:href="'/'">Cancel</a>
+                <a target="_blank" th:href="'/recipe/' + ${recipe.id} + '/image'">Upload image</a>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -27,20 +28,24 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div>
-                        <label>Choose categories:</label>
+                    <div class="col span-1-of-2">
+                        <div>
+                            <label>Choose categories:</label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" value="">
+                                Cat 1
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" value="">
+                                Cat 2
+                            </label>
+                        </div>
                     </div>
-                    <div>
-                        <label>
-                            <input type="checkbox" value="">
-                            Cat 1
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <input type="checkbox" value="">
-                            Cat 2
-                        </label>
+                    <div class="col span-1-of-2">
                     </div>
                 </div>
                 <div class="row">
@@ -66,10 +71,9 @@
                         </div>
                         <div>
                             <select name="difficulty" id="difficulty" th:field="*{difficulty}">
-                                <option value="EASY">EASY</option>
-                                <option value="MODERATE">MODERATE</option>
-                                <option value="KIND_OF_HARD">KIND_OF_HARD</option>
-                                <option value="HARD">HARD</option>
+                                <option th:each="difficulty : ${difficulties}"
+                                        th:value="${difficulty.name()}"
+                                        th:text="${difficulty.name()}"></option>
                             </select>
                         </div>
                     </div>

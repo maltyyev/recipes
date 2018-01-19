@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/resources/css/style.css" th:href="@{/resources/css/style.css}">
+    <link rel="stylesheet" href="../../static/vendors/css/ionicons.min.css" th:href="@{/vendors/css/ionicons.min.css}">
+    <link rel="stylesheet" href="../../static/vendors/css/grid.css" th:href="@{/vendors/css/grid.css}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
+    <title>Upload image</title>
+</head>
+<body>
+    <form th:action="'/recipe/' + ${recipe.id} + '/image'"
+          method="post" enctype="multipart/form-data">
+        <div>
+            <label for="imagefile">Upload</label>
+        </div>
+        <div>
+            <input type="file" id="imagefile" name="imagefile">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</body>
+</html>

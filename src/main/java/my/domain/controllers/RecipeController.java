@@ -1,6 +1,7 @@
 package my.domain.controllers;
 
 import my.domain.commands.RecipeCommand;
+import my.domain.models.Difficulty;
 import my.domain.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,19 +21,21 @@ public class RecipeController {
 
     @GetMapping("/recipe/{id}/show")
     public String getRecipeById(@PathVariable String id, Model model) {
-        model.addAttribute("recipe", recipeService.findById(new Long(id)));
+        model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
         return "recipe/show";
     }
 
     @GetMapping("/recipe/new")
     public String getAddRecipePage(Model model) {
         model.addAttribute("recipe", new RecipeCommand());
+        model.addAttribute("difficulties", Difficulty.values());
         return "recipe/createOrUpdate";
     }
 
     @GetMapping("/recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model) {
-        model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
+        model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
+        model.addAttribute("difficulties", Difficulty.values());
         return "recipe/createOrUpdate";
     }
 
