@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import my.domain.commands.RecipeCommand;
 import my.domain.converters.Recipe2RecipeCommand;
 import my.domain.converters.RecipeCommand2Recipe;
+import my.domain.exceptions.NotFoundException;
 import my.domain.models.Recipe;
 import my.domain.repositories.RecipeRepository;
 import my.domain.services.RecipeService;
@@ -46,7 +47,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findByIdAndPresentIsTrue(id);
 
         if (!recipeOptional.isPresent())
-            throw new RuntimeException("YOU'RE A LOSER");
+            throw new NotFoundException("Recipe not found");
 
         return recipeOptional.get();
     }

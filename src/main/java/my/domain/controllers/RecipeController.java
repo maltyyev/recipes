@@ -1,14 +1,13 @@
 package my.domain.controllers;
 
 import my.domain.commands.RecipeCommand;
+import my.domain.exceptions.NotFoundException;
 import my.domain.models.Difficulty;
 import my.domain.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class RecipeController {
@@ -52,4 +51,9 @@ public class RecipeController {
         return "redirect:" + savedCommand.getId() + "/show";
     }
 
+
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView pageNotFound() {
+        return new ModelAndView("404error");
+    }
 }
