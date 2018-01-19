@@ -1,14 +1,14 @@
 package my.domain.controllers;
 
 import my.domain.commands.RecipeCommand;
-import my.domain.exceptions.NotFoundException;
 import my.domain.models.Difficulty;
 import my.domain.services.RecipeService;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RecipeController {
@@ -25,7 +25,7 @@ public class RecipeController {
         try {
             model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("ID value should be numeric.");
+            throw new NumberFormatException(e.getMessage());
         }
 
         return "recipe/show";
@@ -60,22 +60,5 @@ public class RecipeController {
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
 
         return "redirect:" + savedCommand.getId() + "/show";
-    }
-
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NotFoundException.class)
-    public ModelAndView pageNotFound(Exception e) {
-
-        ModelAndView modelAndView = new ModelAndView("404error");
-        modelAndView.addObject("exception", e);
-        return modelAndView;
-    }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(NumberFormatException.class)
-    public ModelAndView badRequest(Exception e) {
-        ModelAndView modelAndView = new ModelAndView("400error");
-        modelAndView.addObject("exception", e);
-        return modelAndView;
     }
 }
