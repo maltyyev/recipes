@@ -61,6 +61,7 @@ public class RecipeServiceImpl implements RecipeService {
     @Transactional
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
         Recipe detachedRecipe = recipeCommand2Recipe.convert(command);
+        detachedRecipe.setImage(findById(detachedRecipe.getId()).getImage());
         detachedRecipe.setPresent(true);
 
         Recipe savedRecipe = recipeRepository.save(detachedRecipe);

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../static/vendors/css/ionicons.min.css" th:href="@{/vendors/css/ionicons.min.css}">
     <link rel="stylesheet" href="../../static/vendors/css/grid.css" th:href="@{/vendors/css/grid.css}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic" rel="stylesheet">
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
     <title>Add new recipe</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
                 <i class="ion-information"></i>
                 <h2>Recipe info</h2>
                 <a th:href="'/'">Cancel</a>
-                <a target="_blank" th:href="'/recipe/' + ${recipe.id} + '/image'">Upload image</a>
+                <a th:if="${recipe.id != null}" target="_blank" th:href="'/recipe/' + ${recipe.id} + '/image'">Upload image</a>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -110,7 +111,7 @@
             <div class="panel-header clearfix">
                 <i class="ion-ios-nutrition"></i>
                 <h2>Ingredients</h2>
-                <a th:href="'/recipe/' + ${recipe.id} + '/ingredients'">
+                <a th:if="${recipe.id != null}" th:href="'/recipe/' + ${recipe.id} + '/ingredients'">
                     Edit
                 </a>
             </div>
@@ -159,5 +160,12 @@
             <input type="submit" value="Submit">
         </div>
     </form>
+
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            var recipe = [[${recipe}]];
+            console.log(recipe);
+        });
+    </script>
 </body>
 </html>
