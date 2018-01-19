@@ -5,13 +5,13 @@
     <link rel="stylesheet" href="../static/resources/css/style.css" th:href="@{/resources/css/style.css}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,300i,400&amp;subset=cyrillic"
           rel="stylesheet">
-    <title>404 Not Found</title>
+    <title>400 Bad Request</title>
 </head>
 <body>
-    <div class="not-found-exception">
-        <h1>Error 404</h1>
+    <div class="bad-request-exception">
+        <h1>400 Bad Request</h1>
         <div class="exception-box">
-            <h3>Oops... Looks like this page doesn't exist!</h3>
+            <h3>Go back and re-check your input.</h3>
             <h4 th:text="${exception.getMessage()}"></h4>
         </div>
     </div>

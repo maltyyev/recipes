@@ -390,7 +390,7 @@ ul li a.delete {
 }
 
 .not-found-exception h1,
-.not-found-exception h3 {
+.exception-box {
     position: absolute;
     color: var(--image-text-color);
 }
@@ -406,9 +406,40 @@ ul li a.delete {
     font-size: 300%;
 }
 
-.not-found-exception h3 {
+.exception-box {
     left: 50%;
-    bottom: 25%;
+    bottom: 20%;
     transform: translateX(-50%);
+}
+
+.exception-box h3 {
     font-size: 145%;
+}
+
+.exception-box h4 {
+    font-size: 110%;
+    text-align: center;
+}
+
+/*----------------------------------------*/
+/* 400 BAD REQUEST PAGE */
+/*----------------------------------------*/
+
+.bad-request-exception {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9));
+}
+
+.bad-request-exception h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: var(--image-text-color-darker);
 }
