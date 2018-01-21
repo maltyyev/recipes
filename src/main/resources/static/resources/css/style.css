@@ -25,6 +25,7 @@ html, body {
     --main-color-darker: #236d9d;
     --image-text-color: #ecf0f1;
     --image-text-color-darker: #d8e1e3;
+    --error-color: #e74c3c;
 }
 
 .clearfix { zoom: 1; }
@@ -163,6 +164,11 @@ textarea {
     padding: 7px;
     border-radius: 3px;
     border: 1px solid #ccc;
+}
+
+input[type=text].error-field,
+textarea.error-field {
+    border: 1px solid var(--error-color);
 }
 
 select {
@@ -367,6 +373,18 @@ p {
 
 .panel-body {
     padding: 10px;
+}
+
+.panel.error-box {
+    border-color: var(--error-color);
+}
+
+.panel.error-box .panel-header {
+    background-color: var(--error-color);
+}
+
+.panel.error-box .panel-header i {
+    color: var(--error-color);
 }
 
 /*----------------------------------------*/
